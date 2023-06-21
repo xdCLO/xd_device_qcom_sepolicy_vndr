@@ -41,6 +41,10 @@ allow vendor_wcnss_service vendor_toolbox_exec:file rx_file_perms;
 allow vendor_wcnss_service vendor_wifi_vendor_data_file:dir create_dir_perms;
 allow vendor_wcnss_service vendor_wifi_vendor_data_file:file create_file_perms;
 
+allow vendor_wcnss_service mnt_vendor_file:dir search;
+allow vendor_wcnss_service vendor_persist_wcnss_service_file:dir rw_dir_perms;
+allow vendor_wcnss_service vendor_persist_wcnss_service_file:file create_file_perms;
+
 allow vendor_wcnss_service proc_net:file rw_file_perms;
 
 allow vendor_wcnss_service self:{ socket qipcrtr_socket }  create_socket_perms;
@@ -71,6 +75,8 @@ userdebug_or_eng(`
 userdebug_or_eng(`
 allow vendor_wcnss_service vendor_wifi_vendor_log_data_file:dir create_dir_perms;
 allow vendor_wcnss_service vendor_wifi_vendor_log_data_file:file create_file_perms;
+#This allows system apis call during debug
+allow vendor_wcnss_service rootfs:dir read;
 # This is needed for ptt_socket_app to write logs file collected to sdcard
 r_dir_file(vendor_wcnss_service, storage_file)
 r_dir_file(vendor_wcnss_service, mnt_user_file)
